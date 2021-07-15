@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace AddressBookLinq
 {
@@ -106,6 +108,34 @@ namespace AddressBookLinq
                 }
             }
             //exception
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public void DeleteContact(string firstName)
+        {
+            try
+            {
+                //Selecting row to delete using Lambda function
+                //Table.asenumarable means takes all the data from table as list
+                //a is a variable declaration that stores all the columns field a.column name
+              //Firstordefault means gets the first elements in the table when we search
+                var rowDelete =DataTable.AsEnumerable().Where(a => a.Field<string>("FirstName").Equals(firstName)).FirstOrDefault();
+                if (rowDelete != null)
+                {
+                    // add a RowDelete event handler for the table.
+
+                    rowDelete.Delete();
+                    Console.WriteLine("\nContact with name '{0}' deleted successfully!", firstName);
+                    DisplayDetails();
+                }
+                else
+                {
+                    Console.WriteLine("There is no such data");
+                }
+            }
+            
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
