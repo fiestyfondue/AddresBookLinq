@@ -7,10 +7,19 @@ namespace AddressBookLinq
 {
     class AddressBook
     {
-        public void AddToDataTable()
+        DataTable dataTable = new DataTable();
+        public AddressBook()
         {
-            // Create a new DataTable.
-            DataTable table = new DataTable();
+            // Here store Type as a field
+            //column Represents all table columns
+            dataTable.Columns.Add("FirstName", typeof(string));
+            dataTable.Columns.Add("LastName", typeof(string));
+            dataTable.Columns.Add("Address", typeof(string));
+            dataTable.Columns.Add("City", typeof(string));
+            dataTable.Columns.Add("State", typeof(string));
+            dataTable.Columns.Add("Zip", typeof(string));
+            dataTable.Columns.Add("PhoneNumber", typeof(string));
+            dataTable.Columns.Add("Email", typeof(string));
         }
     }
 }
